@@ -1,0 +1,105 @@
+<%- include("partials/header")%>
+
+
+<div class="chat">
+  <div class="chat__sidebar">
+
+    <div id="sidebar" class="ui visible inverted left vertical sidebar menu">
+          <div class="item active">
+            <i class="icon user outline"></i> <span id="username"><%= username %></span> 
+            <span id="_id" style="display: None;"><%= _id %></span> <span id="lastUse" style="display: None;"><%= lastUse %></span>
+         </div>
+        <a id="new_conversation" class="item">
+            <i class="edit icon"></i> 
+             Create New Chat
+        </a>
+
+        <form id="logout" action="/users/<%= _id %>/logout" method="POST">
+          <a class="item">
+              <i class="sign-out icon"></i>
+              Logout
+          </a>
+        </form>
+
+          <div class="item active">
+            Conversations
+          </div>
+
+        <div class="conversations"></div>      
+
+    </div>     
+  </div>
+
+
+  <div id="chatroomID" class=""></div>
+
+  <div class="edit__conversation">
+    <p><span class="exit-edit-conversation">X</span ></p>
+    <div class="edit-convo-error-messages" style="margin: 1%;"></div>
+    <div id="addUser-input" class="ui fluid transparent action input" style="border-bottom: 1px solid grey;">
+      <input type="text" placeholder="Add New Users...">
+      <button id="addUser" class="ui button"><i class="plus icon"></i></button>
+    </div>
+  
+
+    <h5></h5>
+    <ul class="new-additions"></ul>
+    
+    
+    <div class="edit__conversation__buttons">
+      <button id="submit-edit-conversation" class="ui primary basic button"></button>
+      <button style="margin-top: 10px;" id="leave-chat" class="ui negative basic button"> Leave Chat <i class="trash alternate outline icon"></i></button>
+    </div>
+
+    
+    
+  </div>
+
+
+  <div class="chat__main">
+      <div class="chat-error-messages" style="margin: 1%;"></div>
+      <div class="chat__navbar">
+        <div>
+          <i  class="large bars icon"></i>
+        </div>
+        <span class="chatTitle"><h3> <form></form> </h3> </span>
+      </div>
+
+      <div class="chat-error-messages" style="margin: 1%;"></div>
+      
+      <div id="messages" class="chat__messages"></div>
+
+      <div class="compose">
+          <form class="ui form" id="message-form">
+            <textarea id="message-content" style="resize: none;" rows="1" name="message" placeholder="Message"></textarea>
+            <button class="ui primary button" >Send</button>
+          </form>
+
+          <button style="display: none;" class="ui primary button" id="add-image"><i class="file image icon"></i></button>
+          <button style="display: none;" class="ui primary button" id="send-location"><i class="location arrow icon"></i></button>
+          
+          
+      </div>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/groupName.js"></script>
+<script src="/js/chatbox.js"></script>
+<script src="/js/messenger-view.js"></script>
+<script src="/js/socketChat.js"></script>
+<script src="/js/edit-page.js"></script>
+<script>
+  window.addEventListener('load',(e)=>{
+    //window.history.pushState("", "", '/');
+    getChatboxes(15,0,true)
+    document.querySelector(".chat__messages").innerHTML='<h3 style="padding-left:36%;padding-top:10%;color:rgb(168, 164, 164);"> No conversation Selected</h3>'
+    document.querySelector(".compose").style.display= "none" 
+  })
+</script>
+
+
+<%- include("partials/footer")%>

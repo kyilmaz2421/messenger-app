@@ -1,0 +1,26 @@
+<%- include("partials/header")%>
+
+<div class="centered-form">
+    <div class="centered-form__box">
+         <h1>Messenger App</h1>
+         
+         <div>
+             <% if(error){ %>
+                <div style="color:red"> <%= error %></div>
+            <% } %>
+             <div id="error-notification" class="alert alert-danger" role="alert"></div>
+             <form id="authentication" method="POST" >
+                 <label >User name</label>
+                 <input type="text" name="username" placeholder="Your username"> 
+                 <label >Password</label>
+                 <input type="password" name="password" placeholder="password">
+             </form>
+             <button class="login">Login</button>
+             <button style="margin-top: 4px;" class="signup">Sign Up</button>
+         </div>       
+    </div>
+</div>
+
+<script src="/js/login.js"></script>
+
+<%- include("partials/footer")%>
