@@ -28,7 +28,6 @@ $messageForm.addEventListener('submit',(ev)=>{
         $messageFormButton.removeAttribute("disabled")
         $messageFormInput.value = ""
         $messageFormInput.focus()
-        console.log(message)
         renderMessage(message)
         updateChatbox(document.getElementById(chatroomID),message,true);
         $messages.scrollTop = $messages.scrollHeight
@@ -53,7 +52,6 @@ socket.on("addedToGroup",({id,data,username:user})=>{
 })
 
 socket.on("newNotification",({id,data,username:user})=>{
-    console.log("NOTTTIFICATION-----",data)
     if(data.method=="POST"){
         addChatbox(data,0);
         if(user!=username)toggleNotificationIcon(id,false)
@@ -82,23 +80,6 @@ socket.on("newNotification",({id,data,username:user})=>{
     }
 })
 
-
-// $sendLocationButton.addEventListener("click",(e)=>{
-//    if(!navigator.geolocation){
-//     return alert("Geolocation not supported by this browser")
-//    }
-//    $sendLocationButton.setAttribute("disabled","disabled")
-   
-//    navigator.geolocation.getCurrentPosition((pos)=>{
-//         socket.emit("sendLocation",{
-//             long:pos.coords.longitude,
-//             lat:pos.coords.latitude
-//         },(ack)=>{ // run upon event emitted is acknoledged by reciever
-//             console.log(ack)
-//             $sendLocationButton.removeAttribute("disabled")
-//         })
-//    })
-// })
 
 
 

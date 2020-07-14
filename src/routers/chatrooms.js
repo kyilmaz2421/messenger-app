@@ -174,7 +174,6 @@ router.get('/chatrooms/conversation/:chatroomid',auth, async (req, res) => {
 
 //GET MEMBERS
 router.get("/chatrooms/:chatroomid/members",auth,async (req,res)=>{
-    console.log("MEMEBER",chatroomQuery(req.params.chatroomid,req.user))
     const chatroom = await Chatroom.findOne(chatroomQuery(req.params.chatroomid,req.user))
     if (!chatroom) {
         return res.status(404).send({error:"Invalid request"})
@@ -184,7 +183,6 @@ router.get("/chatrooms/:chatroomid/members",auth,async (req,res)=>{
 
 // GET CHATROOM NAME
 router.get("/chatrooms/:chatroomid/name",auth,async (req,res)=>{
-    console.log("NAME",chatroomQuery(req.params.chatroomid,req.user))
     const chatroom = await Chatroom.findOne(chatroomQuery(req.params.chatroomid,req.user))
     if (!chatroom) {
         return res.status(404).send({error:"Invalid request"})

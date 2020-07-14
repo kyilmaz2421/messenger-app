@@ -116,7 +116,6 @@ const getChatboxes = (lim,scrollPos,onLoad=false)=>{
             if(data.error){
                 document.querySelector(".conversations").innerHTML ='<div class="item"> '+data.error+' </div>'
             }else if(!data.complete){
-                //const lastUse = parseInt(document.getElementById('lastUse').innerText)
                 if(!onLoad){
                     while (sidebarScroll.firstChild) {
                         sidebarScroll.removeChild(sidebarScroll.lastChild);
@@ -144,7 +143,6 @@ document.querySelector("#sidebar").onscroll= function(){
     //how far have I scrolled
     const scrollOffset = this.scrollTop + visibleHeight
     
-    //console.log("SCROLL",containerHeight <= scrollOffset)
     if (containerHeight <= scrollOffset){
         const len = sidebarScroll.children.length
 

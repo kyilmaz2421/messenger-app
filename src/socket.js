@@ -16,7 +16,7 @@ const socketConfig = async (socket,io)=>{
     } 
 
     socket.on('join',async ({userID,prevSocketID},callback)=>{ // need to verify roomID and username auth
-        //console.log("New client connected to server",socket.id)
+        console.log("New client connected to server",socket.id)
 
         if(prevSocketID) await goOffline(prevSocketID)
         const user = await getUser(userID,true)
@@ -49,8 +49,6 @@ const socketConfig = async (socket,io)=>{
         const socketIDs = []
         for(let i=0; i<data.members.length;i++){
             const user = await getUser(data.members[i]) //user is the creator
-            // console.log(user.socketIDs.length,user.socketIDs)
-            // console.log(io.sockets.connected[user.socketIDs[0]])
             for(let j=0; j<user.socketIDs.length;j++){
                 io.sockets.connected[user.socketIDs[j]].join(roomID)
             }
@@ -92,7 +90,6 @@ const socketConfig = async (socket,io)=>{
                     newMembers.push(member)
                     const user = await getUser(member)
                     for(let j=0; j<user.socketIDs.length;j++){
-                        console.log("DONT BE NULL<",user.socketIDs[j])
                         io.sockets.connected[user.socketIDs[j]].join(roomID)
                         io.to(user.socketIDs[j]).emit("addedToGroup",{id:roomID,data:data.chatroom,username}) // handles all the members removed and currently in groupx
                     }

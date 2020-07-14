@@ -111,14 +111,11 @@ const renderMessage = (message,location=0) =>{
     if (location==-1) document.querySelector(".chat__messages").prepend(elem); //going through old chat
     else document.querySelector(".chat__messages").appendChild(elem); //new chat or 1st time loading
 
-    //document.querySelector(".chat__messages").prepend(elem)
 }
 
 
 $messages.onscroll = function(){
-    console.log("SCROLLIn")
     if (this.scrollTop==0 && isRendered){
-        console.log("HERE")
         const loader = renderLoader($messages)
         const len = $messages.children.length
         getMessages(document.getElementById(chatroomIDElem.className.slice(7)),15,len,-1)

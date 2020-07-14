@@ -3,11 +3,6 @@ const User = require('../models/user')
 const auth = require('../middleware/auth')
 const router = new express.Router()
 
-// router.get("/:id"),async (req,res)=>{
-//     console.log(":((((((")
-//     return res.render("chat",{username: user.username,_id: user._id,lastUse:user.lastUse})
-// }
-
 router.get("/login",(req,res)=>{
     res.render("login",{error:undefined})
 })
@@ -78,35 +73,6 @@ router.post('/users/:id/logout',auth,async (req, res) => {
         res.status(500).send()
     }
 })
-
-// router.post('/users/:id/logoutAll', auth, async (req, res) => {
-//     try {
-//         req.user.tokens = []
-//         req.user.lastUse= Date.now()
-//         await req.user.save()
-//         res.clearCookie('JWT');
-//         return res.render("login",{error:undefined})
-//     } catch (e) {
-//         res.status(500).send()
-//     }
-// })
-
-    
-// const updates = Object.keys(req.body)
-// const allowedUpdates = ['name', 'email', 'password', 'age']
-// const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
-
-// if (!isValidOperation) {
-//     return res.status(400).send({ error: 'Invalid updates!' })
-// }
-
-// try {
-//     updates.forEach((update) => req.user[update] = req.body[update])
-//     await req.user.save()
-//     res.send(req.user)
-// } catch (e) {
-//     res.status(400).send(e)
-// }
 
 router.delete('/users/me', async (req, res) => {
     try {
