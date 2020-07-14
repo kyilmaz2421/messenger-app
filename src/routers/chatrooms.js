@@ -131,7 +131,7 @@ router.get('/chatrooms',auth, async (req, res) => {
         // find every chatroom with a member of 'username'
         const chatrooms = await Chatroom.find(dbquery)
         chatrooms.sort((a,b)=>b.lastUse-a.lastUse)
-        if(skip == chatrooms.length){
+        if(skip == chatrooms.length && chatrooms.length>0 ){
             return res.status(200).send({complete:true})
         }else{
             const slicedChatrooms = await sliceAndPopulate(chatrooms,0,lim)

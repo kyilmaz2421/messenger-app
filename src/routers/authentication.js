@@ -3,9 +3,7 @@ const User = require('../models/user')
 const auth = require('../middleware/auth')
 const router = new express.Router()
 
-router.get("/login",(req,res)=>{
-    res.render("login",{error:undefined})
-})
+
 
 router.post('/login', async (req, res) => {
     try {

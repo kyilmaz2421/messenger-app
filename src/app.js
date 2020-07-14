@@ -24,7 +24,7 @@ app.use(chatroomRouter)
 app.get('/', async (req, res)=>{
     const user = await auth(req.signedCookies.JWT,true)
     if (!user){
-        return res.redirect("/login");
+        return res.render("login",{error:undefined})
     }
     else return res.render("chat",{username: user.username,_id: user._id,lastUse: user.lastUse})
 });
