@@ -94,7 +94,7 @@
 <script src="/js/edit-page.js"></script>
 <script>
   window.addEventListener('load',(e)=>{
-    //window.history.pushState("", "", '/');
+    window.history.pushState("", "", '/');
     getChatboxes(15,0,true)
     document.querySelector(".chat__messages").innerHTML='<h3 style="padding-left:36%;padding-top:10%;color:rgb(168, 164, 164);"> No conversation Selected</h3>'
     document.querySelector(".compose").style.display= "none" 
