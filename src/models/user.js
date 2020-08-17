@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         validate(value) {
             if (value.length < 7) {
-                throw new Error('password must be longer than 7 characters')
+                throw new Error('password must 7 characters or longer')
             }
         }
     },
