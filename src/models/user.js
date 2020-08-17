@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Chatroom = require('./chatroom')
@@ -17,7 +16,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         validate(value) {
             if (value.length < 7) {
-                throw new Error('password must 7 characters or longer')
+                throw new Error('Password must 7 characters or longer')
             }
         }
     },

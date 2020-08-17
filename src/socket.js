@@ -40,10 +40,12 @@ const socketConfig = async (socket,io)=>{
         callback("rooms updated")
     })
 
+
     socket.on('disconnect',async ()=>{  //upon disconnect we wanna update users lastUse
         console.log("OFFLINE",socket.id)
-        await goOffline(socket.id)
+        await goOffline(socket.id,socket.request.signedCookies.JWT)
     })
+
 
     socket.on("create",async({roomID,data})=>{
         const socketIDs = []

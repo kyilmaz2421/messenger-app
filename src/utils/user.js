@@ -10,13 +10,16 @@ const goOnline = async (socketID,user)=>{
 }
 
 
-const goOffline = async (socketIDs)=>{
+const goOffline = async (socketIDs,currToken=false)=>{
     const user = await User.findOne({socketIDs})
     if(!user){
         console.log("no user")
     }else{
         user.lastUse = Date.now()
         user.socketIDs=user.socketIDs.filter(id => id != socketIDs)
+        if(currToken!= false){
+            user.tokens = user.tokens.filter((token) =>  token.token !== currToken)
+        }
         await user.save()
     }
   

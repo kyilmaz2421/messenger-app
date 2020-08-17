@@ -43,7 +43,10 @@ router.post('/signup', async (req, res) => {
         });
         return res.render("chat",{username: user.username,_id: user._id,lastUse:user.lastUse})
     } catch (e) {
-        res.render("login",{error:"Server error"})
+        if (e.errors.password){
+            return res.render("login",{error:e.errors.password})
+        }
+        res.render("login",{error:"server error"})
     }
 })
 
@@ -57,19 +60,9 @@ router.get('/users/:username', async (req, res) => {
 
 
 
-router.post('/users/:id/logout',auth,async (req, res) => {
-
-    try {
-        req.user.tokens = req.user.tokens.filter((token) => {
-            return token.token !== req.token
-        })
-        req.user.lastUse= Date.now()
-        await req.user.save()
-        res.clearCookie('JWT');
-        return res.render("login",{error:undefined})
-    } catch (e) {
-        res.status(500).send()
-    }
+router.post('/users/:id/logout',auth, async (req, res) => {
+    res.clearCookie('JWT');
+    return res.render("login",{error:undefined})
 })
 
 router.delete('/users/me', async (req, res) => {

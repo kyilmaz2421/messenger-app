@@ -16,6 +16,12 @@ socket.on("disconnect", (msg)=>{
     console.log(socketID,"SERVER-SIDE TRIGGERED DISCONNECT")
 })
 
+document.getElementById("logout").addEventListener('click', (ev)=>{
+    const form = document.forms["logout"]
+    socket.emit('disconnect')
+    form.submit()
+})
+
 //SEND MESSAGE
 $messageForm.addEventListener('submit',(ev)=>{
     ev.preventDefault()
@@ -24,7 +30,7 @@ $messageForm.addEventListener('submit',(ev)=>{
     
     const text = ev.target.elements.message.value, chatroomID = chatroomIDElem.className.slice(7)
 
-    socket.emit('sendMessage', {text,username,chatroomID} ,(message)=>{ // run upon event emitted is acknoledged by reciever
+    socket.emit('sendMessage', {text,username,chatroomID} ,(message)=>{ // run upon event emitted is acknowledged by reciever
         $messageFormButton.removeAttribute("disabled")
         $messageFormInput.value = ""
         $messageFormInput.focus()
