@@ -31,8 +31,6 @@ const getUser = async (user,id=false)=>{
 
 
 const updateSockets = async (sockets,user,id=false)=>{
-    // const query = id ? {_id:user}:{username:user}
-    // const onlineUser = await User.findOne(query)
     user.socketIDs= sockets
     await user.save()
 }

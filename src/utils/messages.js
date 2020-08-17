@@ -23,16 +23,6 @@ const generateMessage = async (user,text,chatroomID)=>{
 }
 
 
-// const generateLocationMessage= (user,url,_id)=>{
-//     const data {
-//         username,
-//         text: url,
-//         createdAt: new Date().getTime()
-//     }
-//     updateConversation(data,id)
-//     return data
-// }
-
 
 module.exports = {
     generateMessage

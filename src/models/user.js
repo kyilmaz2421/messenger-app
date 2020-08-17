@@ -14,11 +14,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 7,
         trim: true,
         validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('Password cannot contain "password"')
+            if (value.length < 7) {
+                throw new Error('password must be longer than 7 characters')
             }
         }
     },
@@ -41,23 +40,6 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-// userSchema.virtual('chatrooms', {
-//     ref: 'Chatroom',
-//     localField: '_id',
-//     foreignField: 'owner'
-// })
-
-
-//CONTROLS RETURN
-// userSchema.methods.toJSON = function () {
-//     const user = this
-//     const userObject = user.toObject()
-
-//     delete userObject.password
-//     delete userObject.tokens
-
-//     return userObject
-// }
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this
@@ -96,12 +78,12 @@ userSchema.pre('save', async function (next) {
     next()
 })
 
-// Delete user chatrooms when user is removed
-// userSchema.pre('remove', async function (next) {
-//     const user = this
-//     await Chatroom.deleteMany({ owner: user._id })
-//     next()
-// })
+//Delete user chatrooms when user is removed
+userSchema.pre('remove', async function (next) {
+    const user = this
+    await Chatroom.deleteMany({ owner: user._id })
+    next()
+})
 
 const User = mongoose.model('User', userSchema)
 

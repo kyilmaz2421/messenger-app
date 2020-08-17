@@ -153,8 +153,8 @@ router.get('/chatrooms/conversation/:chatroomid',auth, async (req, res) => {
         if(!conversation) return res.status(500).send({error:"conversation wasn't found"})
         
         if(skip==0){
-            if(conversation.data.length>lim){ //lst
-                conversation.data = conversation.data.slice(conversation.data.length-(lim),-1)
+            if(conversation.data.length>=lim){ //lst
+                conversation.data = conversation.data.slice(conversation.data.length-(lim),conversation.data.length)
             } // alternativeley we send the whole thing
         }else if(skip>=conversation.data.length){//skip >0 (therefore not the lst query --> looking up chat history)
             conversation.data=[]

@@ -14,10 +14,6 @@ const conversationSchema = new mongoose.Schema({
                 type: Number,
                 require: true
             }
-            // data_type:{
-            //     type: String,
-            //     required: true
-            // }
          }]
         },
          
