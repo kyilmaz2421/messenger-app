@@ -1,15 +1,15 @@
 //SOCKET COMMUNICATIONS
-
-socket.on("connect",()=>{
+socket.on("connect", ()=>{
     if (socketID.length>0){
         console.log(socket.io.engine.id,"re-connect")
-    }else console.log(socket.io.engine.id,"connect")
+    }else{
+        console.log(socket.io.engine.id,"connect")
+    }
 
-    socket.emit("join",{userID,prevSocketID:socketID},(ack)=>{
+    socket.emit("join",{userID, prevSocketID: socketID},(ack)=>{
         console.log(ack)
     })
     socketID = socket.io.engine.id
-
 })
 
 socket.on("disconnect", (msg)=>{
@@ -43,7 +43,7 @@ $messageForm.addEventListener('submit',(ev)=>{
 //RECIEVE MESSAGE
 socket.on('message',({message,chatroomID,username:user})=>{ //general for all messages data recieved
     updateChatbox(document.getElementById(chatroomID),message,true);
-    if(chatroomIDElem.className=="active-"+chatroomID){
+    if(chatroomIDElem.className == "active-"+chatroomID){
         renderMessage(message)
         autoScroll()
     }else if(user!=username){
@@ -63,7 +63,7 @@ socket.on("newNotification",({id,data,username:user})=>{
         if(user!=username)toggleNotificationIcon(id,false)
     }
     if(data.delete){
-        if(chatroomIDElem.className=="active-"+id) clearConvPage(true)
+        if(chatroomIDElem.className == "active-"+id) clearConvPage(true)
         removeChatBoxElem(document.getElementById(id))
     }else if(data.oldData){
         if(data.oldData.oldMembers){ //members change
@@ -76,7 +76,7 @@ socket.on("newNotification",({id,data,username:user})=>{
         }       
         if(data.oldData.oldName){
             updateChatbox(document.getElementById(id),data);
-            if(chatroomIDElem.className=="active-"+id){
+            if(chatroomIDElem.className == "active-"+id){
                 if(data.oldData.oldName) document.querySelector(".chatTitle h3 form").innerText = data.chatroom.name
             }else if(user!=username){
                 toggleNotificationIcon(id,false)

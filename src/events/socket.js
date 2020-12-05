@@ -2,11 +2,11 @@
 
 const socketio = require('socket.io')
 const {generateMessage} = require("./utils/messages")
-const {getUser,goOffline,goOnline,updateSockets,generateNotifications} = require("./utils/user")
+const {getUser, goOffline, goOnline, updateSockets, generateNotifications} = require("./utils/user")
 const auth = require("./utils/auth")
-const Chatroom = require('./models/chatroom')
-const User = require('./models/user')
-
+const Chatroom = require('../models/chatroom')
+const User = require('../models/user')
+const redisClient = require('./cache/redis')
 
 const socketConfig = async (socket,io)=>{
     const token = socket.request.signedCookies.JWT
@@ -15,24 +15,28 @@ const socketConfig = async (socket,io)=>{
         socket.disconnect()
     } 
 
-    socket.on('join',async ({userID,prevSocketID},callback)=>{ // need to verify roomID and username auth
-        console.log("New client connected to server",socket.id)
+    socket.on('join',async ({userID, prevSocketID},callback)=>{ // need to verify roomID and username auth
+        
+        console.log("New client connected to server", socket.id)
+        if(prevSocketID){
+            console.log("Previous ID:", prevSocketID)
+            await goOffline(prevSocketID)
+        }
 
-        if(prevSocketID) await goOffline(prevSocketID)
         const user = await getUser(userID,true)
         const liveSockets = []
-        for(let j=0; j<user.socketIDs.length;j++){
+        for(let j=0; j<user.socketIDs.length; j++){
             try { // designed to remove bad sockets
                 io.sockets.connected[user.socketIDs[j]]
                 liveSockets.push(user.socketIDs[j])
             }catch(e){
-                console.log("CATCH")
+                console.log("Unused old socket", user.socketIDs[j], "removed")
             }
         }
-        await updateSockets(liveSockets,user,true)
+        await updateSockets(liveSockets, user, true)
 
-        const chatrooms = await goOnline(socket.id,user)
-        if(chatrooms.length>0){
+        const chatrooms = await goOnline(socket.id, user)
+        if(chatrooms.length > 0){
             chatrooms.forEach(chatroom => {
                 socket.join(chatroom._id)
             });
@@ -41,9 +45,9 @@ const socketConfig = async (socket,io)=>{
     })
 
 
-    socket.on('disconnect',async ()=>{  //upon disconnect we wanna update users lastUse
-        console.log("OFFLINE",socket.id)
-        await goOffline(socket.id,socket.request.signedCookies.JWT)
+    socket.on('disconnect', async ()=>{  //upon disconnect we wanna update users lastUse
+        console.log("Disconnected:",socket.id)
+        await goOffline(socket.id, socket.request.signedCookies.JWT)
     })
 
 
@@ -67,8 +71,6 @@ const socketConfig = async (socket,io)=>{
     })
 
     socket.on('sendMessage',async ({text,username,chatroomID},callback)=>{ // need to verify roomID and username auth
-        //const user = getUser(socket.id)
-        //const chatroom = getChatroom(socket.id)
         await generateNotifications(chatroomID,username)
         const message = await generateMessage(username,text,chatroomID)
         socket.broadcast.to(chatroomID).emit('message',{message,chatroomID,username})
@@ -121,7 +123,6 @@ const socketConfig = async (socket,io)=>{
 
     
     socket.on("sendLocation",({roomID,username,data,conv_id},callback)=>{
-        //const chatroom = getChatroom(socket.id)
         const location = "https://google.com/maps?q="+data.lat+","+data.long
         io.to(roomID).emit("locationMessage",generateMessage({username,location},conv_id))
         callback("Location Shared")

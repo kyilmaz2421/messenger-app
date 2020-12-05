@@ -1,12 +1,12 @@
-const Chatroom = require('../models/chatroom')
-const User = require('../models/user')
+const Chatroom = require('../../models/chatroom')
+const User = require('../../models/user')
 
 
 const goOnline = async (socketID,user)=>{
     user.lastUse = Date.now()
     user.socketIDs = user.socketIDs.concat(socketID)
     await user.save()
-    return await Chatroom.find({members:user.username})
+    return await Chatroom.find({members: user.username})
 }
 
 
@@ -17,9 +17,6 @@ const goOffline = async (socketIDs,currToken=false)=>{
     }else{
         user.lastUse = Date.now()
         user.socketIDs=user.socketIDs.filter(id => id != socketIDs)
-        if(currToken!= false){
-            user.tokens = user.tokens.filter((token) =>  token.token !== currToken)
-        }
         await user.save()
     }
   
@@ -27,14 +24,14 @@ const goOffline = async (socketIDs,currToken=false)=>{
 
 
 const getUser = async (user,id=false)=>{
-    const query = id ? {_id:user}:{username:user}
+    const query = id ? {_id:user}: {username:user}
     const userObj = await User.findOne(query)
     return userObj
 }
 
 
 const updateSockets = async (sockets,user,id=false)=>{
-    user.socketIDs= sockets
+    user.socketIDs = sockets
     await user.save()
 }
 

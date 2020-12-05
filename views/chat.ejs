@@ -5,10 +5,11 @@
   <div class="chat__sidebar">
 
     <div id="sidebar" class="ui visible inverted left vertical sidebar menu">
-          <div class="item active">
-            <i class="icon user outline"></i> <span id="username"><%= username %></span> 
-            <span id="_id" style="display: None;"><%= _id %></span> <span id="lastUse" style="display: None;"><%= lastUse %></span>
-         </div>
+        <div class="item active">
+          <i class="icon user outline"></i> <span id="username"><%= username %></span> 
+          <span id="_id" style="display: None;"><%= _id %></span> <span id="lastUse" style="display: None;"><%= lastUse %></span>
+        </div>
+
         <a id="new_conversation" class="item">
             <i class="edit icon"></i> 
              Create New Chat
@@ -21,9 +22,9 @@
           </a>
         </form>
 
-          <div class="item active">
-            Conversations
-          </div>
+        <div class="item active">
+          Conversations
+        </div>
 
         <div class="conversations"></div>      
 
@@ -41,18 +42,14 @@
       <button id="addUser" class="ui button"><i class="plus icon"></i></button>
     </div>
   
-
     <h5></h5>
     <ul class="new-additions"></ul>
-    
     
     <div class="edit__conversation__buttons">
       <button id="submit-edit-conversation" class="ui primary basic button"></button>
       <button style="margin-top: 10px;" id="leave-chat" class="ui negative basic button"> Leave Chat <i class="trash alternate outline icon"></i></button>
     </div>
 
-    
-    
   </div>
 
 
@@ -77,8 +74,7 @@
 
           <button style="display: none;" class="ui primary button" id="add-image"><i class="file image icon"></i></button>
           <button style="display: none;" class="ui primary button" id="send-location"><i class="location arrow icon"></i></button>
-          
-          
+
       </div>
   </div>
 </div>
@@ -96,8 +92,8 @@
   window.addEventListener('load',(e)=>{
     window.history.pushState("", "", '/');
     getChatboxes(15,0,true)
-    document.querySelector(".chat__messages").innerHTML='<h3 style="padding-left:36%;padding-top:10%;color:rgb(168, 164, 164);"> No conversation Selected</h3>'
-    document.querySelector(".compose").style.display= "none" 
+    document.querySelector(".chat__messages").innerHTML = '<h3 style="padding-left:36%;padding-top:10%;color:rgb(168, 164, 164);"> No conversation Selected</h3>'
+    document.querySelector(".compose").style.display = "none" 
   })
 </script>
 

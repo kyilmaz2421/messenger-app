@@ -26,7 +26,9 @@ const toggleErrorMessages = (className,message,type="negative")=>{
         elem.appendChild(newElem)
         newElem.addEventListener("click",(e)=>elem.removeChild(newElem))
          
-    }else elem.innerHTML=""
+    }else{
+        elem.innerHTML = ""
+    } 
 }
 
 const autoScroll = ()=>{
@@ -53,22 +55,17 @@ const autoScroll = ()=>{
 
 }
 
-const renderLoader = (elem,location=0)=>{
+const renderLoader = (elem, location=0)=>{
     const loader = document.createElement("div")
-    loader.className="ui active centered inline loader"
-    if(location ==0) elem.prepend(loader)
-    else elem.appendChild(loader)
-    
+    loader.className = "ui active centered inline loader"
+    if(location == 0){
+        elem.prepend(loader)
+    }else{
+        elem.appendChild(loader)
+    }
     return loader
 }
 
-
-
-
-document.getElementById("logout").addEventListener("click",(e) =>{
-    socket.disconnect()
-    document.forms["logout"].submit()
-})
 
 
 

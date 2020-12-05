@@ -60,9 +60,9 @@ router.get('/users/:username', async (req, res) => {
 
 
 
-router.post('/users/:id/logout',auth, async (req, res) => {
+router.post('/users/:id/logout', auth, async (req, res) => {
     res.clearCookie('JWT');
-    return res.render("login",{error:undefined})
+    return res.render("login", {error: undefined})
 })
 
 router.delete('/users/me', async (req, res) => {

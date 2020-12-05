@@ -1,5 +1,5 @@
-const Chatroom = require('../models/chatroom')
-const Conversation = require('../models/conversation')
+const Chatroom = require('../../models/chatroom')
+const Conversation = require('../../models/conversation')
 
 const updateConversation = async (data,chatroomID)=>{
     //find conversation from chatroomID

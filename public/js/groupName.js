@@ -41,15 +41,9 @@ document.querySelector(".chatTitle h3 form").addEventListener("click",function(e
         this.appendChild(input)
         this.firstChild.focus()
 
-
         input.addEventListener('focusout',function(e){
             updateName(this,oldValue)
         })
-
-        // document.addEventListener("keypress",function(event){
-        //     console.log("HEYYYYYYYY",event.keyCode)
-        //     if (event.keyCode === 13) updateName(this,oldValue)
-        // })
     }
 
 })
