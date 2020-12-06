@@ -1,30 +1,31 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const conversationSchema = new mongoose.Schema({
-    data: {type:[{
-            user: {
-               type: String,
-               require: true
-            },
-            text:  {
-                type: String,
-                require: true
-            },
-            createdAt:  {
-                type: Number,
-                require: true
-            }
-         }]
+  data: {
+    type: [
+      {
+        user: {
+          type: String,
+          require: true,
         },
-         
-    chatroomID:{
-        type:String,
-        required:true
-    }
+        text: {
+          type: String,
+          require: true,
+        },
+        createdAt: {
+          type: Number,
+          require: true,
+        },
+      },
+    ],
+  },
+
+  chatroomID: {
+    type: String,
+    required: true,
+  },
 });
 
-
-
-const Conversation = mongoose.model('Conversation', conversationSchema);
+const Conversation = mongoose.model("Conversation", conversationSchema);
 
 module.exports = Conversation;

@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "env-cmd": "^8.0.2",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "prettier": "2.2.1"
   }
 }
