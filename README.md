@@ -4,6 +4,20 @@ A fully functional Messenger application (inspired by Slack and Facebook Messeng
 
 Currently hosted on Heroku at https://messaging-chat-app.herokuapp.com/
 
+# How to run environment locally
+
+1. Clone down this repository 
+
+2. Run `npm install`
+
+3. Create a `config/dev.env`
+
+4. In the `dev.env` file the following variable must be set `PORT`, `MONGODB_URL`,`JWT_SECRET`,`COOKIE_SECRET`,`REDIS_URL`
+
+5. Run your Mongo and Redis servers
+
+6. Run `npm run dev` for dev environment OR run `npm run start` for production environment
+
 
 # Introduction
 
