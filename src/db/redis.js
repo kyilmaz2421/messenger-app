@@ -1,5 +1,5 @@
 const { model } = require("../models/user");
-var client = require('redis').createClient(process.env.REDIS_URL);
+const client = require('redis').createClient(process.env.REDIS_URL);
 
 client.on("error", (error) => {
   console.error(error);
