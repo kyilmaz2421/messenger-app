@@ -6,7 +6,7 @@ Currently hosted on Heroku at https://messaging-chat-app.herokuapp.com/
 
 # How to run environment locally
 
-1. Clone down this repository 
+1. Clone down this repository
 
 2. Run `npm install`
 
@@ -17,7 +17,6 @@ Currently hosted on Heroku at https://messaging-chat-app.herokuapp.com/
 5. Run your Mongo and Redis servers
 
 6. Run `npm run dev` for dev environment OR run `npm run start` for production environment
-
 
 # Introduction
 
@@ -31,11 +30,11 @@ For styling I used the Semantic UI framework instead of Bootstrap again with the
 
 # Backend
 
-For the backend I chose Node.js because I really like working with the express framework and wanted to spend some more time learning Javascript. Compared to Javascript I have had more experience building applications with Python and Java, therefore I believed this was a good oppurtunity to build a full Javascript appplication. 
+For the backend I chose Node.js because I really like working with the express framework and wanted to spend some more time learning Javascript. Compared to Javascript I have had more experience building applications with Python and Java, therefore I believed this was a good oppurtunity to build a full Javascript appplication.
 
 For the Database I used MongoDB because I thought that its speed and versatility would come in handy for an application like this. Further, I really enjoy using Mongoose and find it to be a very effective framework.
 
-# Events Engine 
+# Events Engine
 
 I used SocketIO to handle the events and allow all actions such as creating/deleting chatrooms, sending/recieving messages, changing the group name, and adding/removing members to a chatroom to be seen in real time and in under a second on average.
 
@@ -45,12 +44,9 @@ I used server side Redis caching as well to speed up the process of running cert
 
 I designed my website with security in mind ensuring my website met basic security standards. I have security features such as hashed passwords, utlilizing signed cookies as authentication tokens, and applying authentication before granting access to all API endpoints and events. I also developed some protection against XSS attacks and script injections
 
-
 # Future Improvments
 
 - Utilize a front end framework and rebuild the front end using it (Ideally React.js or Vue.js)
 - Improve the front end aesthetic and design, making the website prettier and also more user friendly
 - Dockerize the backend infrastructure and host it in AWS to enable more effective scaling and control over deployments
 - If I were to redo this project I would have streamlined some of my backend systems to acheive slightly cleaner and more extensible code
-
-

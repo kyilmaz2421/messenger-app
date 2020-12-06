@@ -40,44 +40,44 @@ const addChatbox = (chatroom, location, newGroup = false) => {
       ' </div> <p> <span id="newGroup-text" style="font-size:90%;"> You have been added to this chatroom </span> </p>';
   } else {
     const content = chatroom.conversation.data[0];
-    
+
     const elemTitle = document.createElement("div"); // chat box group name
-    elemTitle.style.fontSize = 'large'
-    if (chatroom.name.length > 25){
-        elemTitle.textContent = chatroom.name.substring(0,20)+"..."
-    }else{
-        elemTitle.textContent = chatroom.name
+    elemTitle.style.fontSize = "large";
+    if (chatroom.name.length > 25) {
+      elemTitle.textContent = chatroom.name.substring(0, 20) + "...";
+    } else {
+      elemTitle.textContent = chatroom.name;
     }
-    
 
     const elemContent = document.createElement("p"); // chat box content
-    
+
     const elemContentSpan = document.createElement("span"); //internal span within content paragraph
     elemContentSpan.style.fontSize = "90%";
 
     // actual text box data
-    const elemContentSpanText =  document.createElement("span");
-    const chatboxText = content.user + ": " + content.text
-    if (chatboxText.length + date.length > 22){
-        elemContentSpanText.textContent = content.user + ": " + content.text.substring(0,8) + "..."
-    }else{
-        elemContentSpanText.textContent = content.user + ": " + content.text
+    const elemContentSpanText = document.createElement("span");
+    const chatboxText = content.user + ": " + content.text;
+    if (chatboxText.length + date.length > 22) {
+      elemContentSpanText.textContent =
+        content.user + ": " + content.text.substring(0, 8) + "...";
+    } else {
+      elemContentSpanText.textContent = content.user + ": " + content.text;
     }
 
-    const elemContentSpanSymbol =  document.createElement("span");
-    elemContentSpanSymbol.style.fontSize = "6px"
-    elemContentSpanSymbol.style.margin = "3px"
-    elemContentSpanSymbol.innerHTML= "&#9679;"
+    const elemContentSpanSymbol = document.createElement("span");
+    elemContentSpanSymbol.style.fontSize = "6px";
+    elemContentSpanSymbol.style.margin = "3px";
+    elemContentSpanSymbol.innerHTML = "&#9679;";
 
-    const elemContentSpanDate =  document.createElement("span");
-    elemContentSpanDate.textContent = date
+    const elemContentSpanDate = document.createElement("span");
+    elemContentSpanDate.textContent = date;
 
-    elemContentSpan.appendChild(elemContentSpanText)
-    elemContentSpan.appendChild(elemContentSpanSymbol)
-    elemContentSpan.appendChild(elemContentSpanDate)
+    elemContentSpan.appendChild(elemContentSpanText);
+    elemContentSpan.appendChild(elemContentSpanSymbol);
+    elemContentSpan.appendChild(elemContentSpanDate);
 
     // appending the texbox span into the content paragraph
-    elemContent.appendChild(elemContentSpan)
+    elemContent.appendChild(elemContentSpan);
 
     elemData.appendChild(elemTitle);
     elemData.appendChild(elemContent);
@@ -87,11 +87,10 @@ const addChatbox = (chatroom, location, newGroup = false) => {
   elemMain.appendChild(elemSettings);
   elemMain.appendChild(elemData);
 
-
-  if (location == -1){ // from a get request
-        chatboxElem.appendChild(elemMain);
-  }
-else{
+  if (location == -1) {
+    // from a get request
+    chatboxElem.appendChild(elemMain);
+  } else {
     chatboxElem.prepend(elemMain); // from the post request
   }
 

@@ -1,15 +1,14 @@
-
-let redisConnectionUrl = null
-if(process.env.REDIS_URL){
-  redisConnectionUrl = process.env.REDIS_URL
-}else{
+let redisConnectionUrl = null;
+if (process.env.REDIS_URL) {
+  redisConnectionUrl = process.env.REDIS_URL;
+} else {
   redisConnectionUrl = {
     host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT
-  }
+    port: process.env.REDIS_PORT,
+  };
 }
 
-const client = require('redis').createClient(redisConnectionUrl);
+const client = require("redis").createClient(redisConnectionUrl);
 
 client.on("error", (error) => {
   console.error(error);
