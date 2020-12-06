@@ -40,25 +40,58 @@ const addChatbox = (chatroom, location, newGroup = false) => {
       ' </div> <p> <span id="newGroup-text" style="font-size:90%;"> You have been added to this chatroom </span> </p>';
   } else {
     const content = chatroom.conversation.data[0];
-    elemData.innerHTML =
-      '<div style="font-size:medium;">' +
-      chatroom.name +
-      ' </div> <p> <span style="font-size:90%;">' +
-      content.user +
-      ": " +
-      content.text +
-      ' <span style="font-size:6px;">&#9679;</span> ' +
-      date +
-      " </span> </p>";
+    
+    const elemTitle = document.createElement("div"); // chat box group name
+    elemTitle.style.fontSize = 'large'
+    if (chatroom.name.length > 25){
+        elemTitle.textContent = chatroom.name.substring(0,20)+"..."
+    }else{
+        elemTitle.textContent = chatroom.name
+    }
+    
+
+    const elemContent = document.createElement("p"); // chat box content
+    
+    const elemContentSpan = document.createElement("span"); //internal span within content paragraph
+    elemContentSpan.style.fontSize = "90%";
+
+    // actual text box data
+    const elemContentSpanText =  document.createElement("span");
+    const chatboxText = content.user + ": " + content.text
+    if (chatboxText.length + date.length > 22){
+        elemContentSpanText.textContent = content.user + ": " + content.text.substring(0,8) + "..."
+    }else{
+        elemContentSpanText.textContent = content.user + ": " + content.text
+    }
+
+    const elemContentSpanSymbol =  document.createElement("span");
+    elemContentSpanSymbol.style.fontSize = "6px"
+    elemContentSpanSymbol.style.margin = "3px"
+    elemContentSpanSymbol.innerHTML= "&#9679;"
+
+    const elemContentSpanDate =  document.createElement("span");
+    elemContentSpanDate.textContent = date
+
+    elemContentSpan.appendChild(elemContentSpanText)
+    elemContentSpan.appendChild(elemContentSpanSymbol)
+    elemContentSpan.appendChild(elemContentSpanDate)
+
+    // appending the texbox span into the content paragraph
+    elemContent.appendChild(elemContentSpan)
+
+    elemData.appendChild(elemTitle);
+    elemData.appendChild(elemContent);
   }
 
   elemMain.appendChild(elemNotification);
   elemMain.appendChild(elemSettings);
   elemMain.appendChild(elemData);
 
+
   if (location == -1){ // from a get request
         chatboxElem.appendChild(elemMain);
-  }else{
+  }
+else{
     chatboxElem.prepend(elemMain); // from the post request
   }
 
@@ -127,13 +160,9 @@ const updateChatbox = (elem, data, isMessage = false) => {
       date +
       " </span> </p>";
   } else {
-    //when we have the conversation populated in the chatroom (GET request)
+    // when we have the conversation populated in the chatroom (GET request)
     const content = data.chatroom.conversation.data[0];
     const date = moment(data.chatroom.lastUse).format("h:mm a");
-    //if(notification){
-    //elem.children[1].innerHTML = '<div style="font-size:medium;">'+chatroom.name+' </div> <p> <span style="font-size:90%;">'+content.user+': '+content.text+' <span style="font-size:6px;">&#9679;</span> '+date+' </span> </p>'
-    //toggleNotificationIcon(data.chatroom._id,false)
-    //}else
     elem.children[2].innerHTML =
       '<div style="font-size:medium;">' +
       data.chatroom.name +

@@ -37,7 +37,7 @@ const addUserTag = (users) => {
   toggleErrorMessages("edit-convo-error-messages", undefined);
   if (userInput.value == "") {
     toggleErrorMessages("edit-convo-error-messages", "Please input a username");
-    userInput.value = ""; //clear the input
+    userInput.value = ""; // clear the input
   } else if (users.has(userInput.value)) {
     toggleErrorMessages(
       "edit-convo-error-messages",

@@ -1,7 +1,7 @@
 // GET CONVERSATIONS
 let isRendered = false;
 
-//triggered by event listener inside chatbox
+// triggered by event listener inside chatbox
 const renderConversationPage = (elemMain) => {
   clearConvPage(false);
 
@@ -112,7 +112,7 @@ const renderMessage = (message, location = 0) => {
   const time = moment(message.createdAt).format("h:mm a");
 
   if (message.user !== "Admin") {
-    //meta data
+    // meta data
     const metadata = document.createElement("p");
     metadata.innerHTML =
       '<span class="message__name">' +
@@ -121,7 +121,7 @@ const renderMessage = (message, location = 0) => {
       time +
       "</span>";
 
-    //messages
+    // messages
     const messages = document.createElement("p");
     messages.innerText = message.text;
 
