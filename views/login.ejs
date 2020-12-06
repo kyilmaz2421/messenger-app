@@ -6,17 +6,28 @@
          
          <div>
              <% if(error){ %>
-                <div style="color:red"> <%= error %></div>
+                <div class="ui red message"> <%= error %></div>
             <% } %>
-             <div id="error-notification" class="alert alert-danger" role="alert"></div>
-             <form id="authentication" method="POST" >
-                 <label >User name</label>
-                 <input type="text" name="username" placeholder="Your username"> 
-                 <label >Password</label>
-                 <input type="password" name="password" placeholder="password">
+             <div style="display: none;" class="ui red message" id="error-notification"></div>
+             <form class="ui form" id="authentication" method="POST" >
+                <div class="field">
+                    <label >User name</label>
+                    <div class="ui left icon input">
+                        <input type="text" name="username" placeholder="Your username"> 
+                        <i class="user icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label >Password</label>
+                    <div class="ui left icon input">
+                        <input type="password" name="password" placeholder="password">
+                        <i class="lock icon"></i>
+                    </div>
+                </div>
+                <div class="ui primary basic button big" id="login">Login</div>
+                <div class="ui primary basic button big" id="signup">Sign Up</div>
              </form>
-             <button class="login">Login</button>
-             <button style="margin-top: 4px;" class="signup">Sign Up</button>
+            
          </div>       
     </div>
 </div>
