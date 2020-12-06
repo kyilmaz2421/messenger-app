@@ -5,15 +5,15 @@ const removeChatBoxElem = (elem)=> {
     const parent = elem.parentNode
     parent.removeChild(elem)
     if(parent.children.length==0){
-        document.querySelector(".conversations").innerHTML ="<div class='item'> No Conversations have been started </div>"
+        document.querySelector(".conversations").innerHTML = "<div class='item'> No conversations have been started </div>"
     }
 
 }
 
 const addChatbox = (chatroom,location,newGroup=false)=>{
     const chatboxElem = document.querySelector(".conversations")
-    if (chatboxElem.innerText==='No Conversations have been started'){
-        chatboxElem.innerHTML =""
+    if (chatboxElem.innerText==='No conversations have been started'){
+        chatboxElem.innerHTML = ""
     }
 
     const date = moment(chatroom.lastUse).format('h:mm a')
@@ -47,9 +47,8 @@ const addChatbox = (chatroom,location,newGroup=false)=>{
     if (location==-1)chatboxElem.appendChild(elemMain); //from a get request
     else chatboxElem.prepend(elemMain); //from the post request
 
-    elemSettings.addEventListener('click',(e)=>editChatroomPage(true,chatroom._id))
+    elemSettings.addEventListener('click',(e)=>editChatroomPage(true, chatroom._id))
     elemMain.addEventListener('click',(e)=>renderConversationPage(elemMain))
-    //else elemMain.addEventListener('click',(e)=>renderConversationPage(elemMain,chatroom.conversation._id))
 
     elemMain.addEventListener("mouseover",(e)=>elemSettings.style.display="block")
     elemMain.addEventListener("mouseleave",(e)=>elemSettings.style.display="none")

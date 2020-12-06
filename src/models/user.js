@@ -33,11 +33,8 @@ const userSchema = new mongoose.Schema({
     socketIDs: {
         type: [String],
         required: true
-    },
-    notifications:{
-        type: [String]
     }
-})
+});
 
 
 userSchema.methods.generateAuthToken = async function () {
@@ -75,15 +72,15 @@ userSchema.pre('save', async function (next) {
     }
 
     next()
-})
+});
 
 //Delete user chatrooms when user is removed
 userSchema.pre('remove', async function (next) {
     const user = this
     await Chatroom.deleteMany({ owner: user._id })
     next()
-})
+});
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 
 module.exports = User

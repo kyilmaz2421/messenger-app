@@ -9,7 +9,7 @@ const renderUserTag= (user,buttonType)=>{
     users.add(user)
     elem.addEventListener('click',function(e){
         users.delete(this.className)
-        if(this.className==username){
+        if(this.className == username){
             toggleErrorMessages("edit-convo-error-messages","NOTE: You have selected yourself to leave the group","info")
         }
         if(users.size<2){
@@ -23,7 +23,7 @@ const renderUserTag= (user,buttonType)=>{
 const addUserTag = (users)=>{
     const userInput = document.querySelector("#addUser-input input")
     toggleErrorMessages("edit-convo-error-messages",undefined)
-    if(userInput.value==""){
+    if(userInput.value == ""){
         toggleErrorMessages("edit-convo-error-messages","Please input a username");
         userInput.value = "" //clear the input
     }
@@ -77,35 +77,30 @@ const renderEditPage =(chatroomid)=>{
     document.querySelector("#leave-chat").display="block"
 }
 
-const editChatroomPage = (edit,chatroomID)=>{
+const editChatroomPage = (edit, chatroomID)=>{
     clearUserTags(users)
     isEdit = edit
     if(isEdit){
         renderEditPage(chatroomID)
     }else {
-        document.querySelector("#submit-edit-conversation").innerText="Create new chat"
-        document.querySelector("#leave-chat").display="none"
+        document.querySelector("#submit-edit-conversation").innerText = "Create new chat"
+        document.querySelector("#leave-chat").display = "none"
     }
 
-    document.querySelector(".chat__main").style.display="none"
-    document.querySelector(".edit__conversation").style.display="block"
+    document.querySelector(".chat__main").style.display = "none"
+    document.querySelector(".edit__conversation").style.display = "block"
 }
 
 
-//TRIGGER EDIT PAGE
-document.querySelector(".chat__navbar div i").addEventListener("click",e=>{
-    const isNone = document.querySelector(".chat__sidebar").style.display==="none"
-    document.querySelector(".chat__sidebar").style.display = isNone ? "block":"none"
-})
 
 //Open create user page (other event listener is in addChatBox())
-document.querySelector("#new_conversation").addEventListener('click',(e)=>editChatroomPage(false,undefined))
+document.querySelector("#new_conversation").addEventListener('click',(e) => editChatroomPage(false, undefined))
 
 //add User Tag
-document.querySelector("#addUser").addEventListener('click',(e)=> addUserTag(users))
+document.querySelector("#addUser").addEventListener('click',(e) => addUserTag(users))
 
 //Cancel update user operation
-document.querySelector('.exit-edit-conversation').addEventListener('click',(e)=>clearUserTags(users))
+document.querySelector('.exit-edit-conversation').addEventListener('click',(e) => clearUserTags(users))
 
 
 document.querySelector('#leave-chat').addEventListener('click',(e)=>{
@@ -150,7 +145,7 @@ document.querySelector('#submit-edit-conversation').addEventListener('click',(e)
                     const elem = addChatbox(data,0);
                     renderConversationPage(elem,data.conversation._id)
                     clearUserTags(users)
-                    socket.emit("create",{roomID:data._id, data})
+                    socket.emit("createChatroom",{roomID:data._id, data})
                  }else if(data.delete || data.leave){ 
                     document.querySelector('.exit-edit-conversation').click()
                     clearConvPage(true)

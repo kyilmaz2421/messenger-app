@@ -21,10 +21,10 @@ const conversationSchema = new mongoose.Schema({
         type:String,
         required:true
     }
-})
+});
 
 
 
-const Conversation = mongoose.model('Conversation',conversationSchema)
+const Conversation = mongoose.model('Conversation', conversationSchema);
 
-module.exports = Conversation
+module.exports = Conversation;

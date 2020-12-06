@@ -22,9 +22,9 @@ const chatroomSchema = new mongoose.Schema({
         type: Number,
         required:true
     }
-})
+});
 
 
-const Chatroom = mongoose.model('Chatroom',chatroomSchema)
+const Chatroom = mongoose.model('Chatroom', chatroomSchema);
 
-module.exports = Chatroom
+module.exports = Chatroom;

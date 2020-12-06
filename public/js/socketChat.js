@@ -6,7 +6,7 @@ socket.on("connect", ()=>{
         console.log(socket.io.engine.id,"connect")
     }
 
-    socket.emit("join",{userID, prevSocketID: socketID},(ack)=>{
+    socket.emit("join", {userID, prevSocketID: socketID},(ack)=>{
         console.log(ack)
     })
     socketID = socket.io.engine.id
@@ -68,7 +68,7 @@ socket.on("newNotification",({id,data,username:user})=>{
     }else if(data.oldData){
         if(data.oldData.oldMembers){ //members change
             if(data.oldData.oldMembers.includes(username)&&!data.chatroom.members.includes(username)){ //delete or leave
-                socket.emit("removed",{roomID:id,username},(ack)=>{
+                socket.emit("removedFromChatroom",{roomID:id,username},(ack)=>{
                     clearConvPage(true)
                     removeChatBoxElem(document.getElementById(id))
                 })

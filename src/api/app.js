@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path')
 const userRouter = require('./authentication')
 const chatroomRouter = require('./chatrooms')
-const auth = require("../events/utils/auth")
+const auth = require("../controller/auth")
 
 
 const app = express()
