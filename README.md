@@ -1,6 +1,6 @@
 # Messeneger Application
 
-A fully functional Messenger application (inspired by Slack and Facebook Messenger) using SocketIO, Redis, Node.js, and MongoDB
+A fully functional Messenger application (inspired by Slack and Facebook Messenger) using SocketIO, Redis, Node.js, and MongoDB.
 
 Currently hosted on Heroku at https://messaging-chat-app.herokuapp.com/
 
@@ -26,7 +26,7 @@ This is my passion project where I had the goal of building a full scale, non-tr
 
 One of my primary goals with this project was also developing my front end Javascript skills and working with the DOM. I wanted to challenge myself to build a full-scale. single-page real time website without using any frameworks like Angular.js or React.js. Although using such a framework would have certainly been the right decision for building a robust application my goal was to build these feutures from scratch myself so as to better learn about them.
 
-For styling I used the Semantic UI framework instead of Bootstrap again with the goal of learning something new and furthering my front end development skills
+For styling I used the Semantic UI framework instead of Bootstrap again with the goal of learning something new and furthering my front end development skills.
 
 # Backend
 
@@ -42,8 +42,7 @@ I used server side Redis caching as well to speed up the process of running cert
 
 # Authentication and Security
 
-I designed my website with security in mind ensuring my website met basic security standards. I have security features such as hashed passwords, utlilizing signed cookies as authentication tokens, and applying authentication before granting access to all API endpoints and events. I also developed some protection against XSS attacks and script injections
-
+I designed my website with security in mind ensuring my website met basic security standards. I have security features such as hashed passwords, utlilizing signed cookies as authentication tokens, and applying authentication before granting access to all API endpoints and events.
 # Future Improvments
 
 - Utilize a front end framework and rebuild the front end using it (Ideally React.js or Vue.js)
