@@ -56,9 +56,11 @@ const addChatbox = (chatroom, location, newGroup = false) => {
   elemMain.appendChild(elemSettings);
   elemMain.appendChild(elemData);
 
-  if (location == -1) chatboxElem.appendChild(elemMain);
-  //from a get request
-  else chatboxElem.prepend(elemMain); //from the post request
+  if (location == -1){ // from a get request
+        chatboxElem.appendChild(elemMain);
+  }else{
+    chatboxElem.prepend(elemMain); // from the post request
+  }
 
   elemSettings.addEventListener("click", (e) =>
     editChatroomPage(true, chatroom._id)

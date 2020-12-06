@@ -45,7 +45,7 @@ const addUserTag = (users) => {
         userInput.value +
         "' has already been selected for this group"
     );
-    userInput.value = ""; //clear the input
+    userInput.value = ""; // clear the input
   } else {
     fetch("/users/" + userInput.value, {
       method: "GET",
@@ -55,7 +55,7 @@ const addUserTag = (users) => {
           if (response.error)
             toggleErrorMessages("edit-convo-error-messages", response.error);
           else renderUserTag(userInput.value, "positive");
-          userInput.value = ""; //clear the input
+          userInput.value = ""; // clear the input
         });
       })
       .catch((e) => console.log(e));
@@ -112,17 +112,17 @@ const editChatroomPage = (edit, chatroomID) => {
   document.querySelector(".edit__conversation").style.display = "block";
 };
 
-//Open create user page (other event listener is in addChatBox())
+// Open create user page (other event listener is in addChatBox())
 document
   .querySelector("#new_conversation")
   .addEventListener("click", (e) => editChatroomPage(false, undefined));
 
-//add User Tag
+// add User Tag
 document
   .querySelector("#addUser")
   .addEventListener("click", (e) => addUserTag(users));
 
-//Cancel update user operation
+// Cancel update user operation
 document
   .querySelector(".exit-edit-conversation")
   .addEventListener("click", (e) => clearUserTags(users));
@@ -131,7 +131,7 @@ document.querySelector("#leave-chat").addEventListener("click", (e) => {
   const chatroomID = chatroomIDElem.className.slice(7);
   fetch("/chatrooms/" + chatroomID + "/leave", {
     method: "PATCH",
-    //body will be done through auth
+    // body will be done through auth
   })
     .then((res) => {
       res.json().then((data) => {
@@ -146,7 +146,7 @@ document.querySelector("#leave-chat").addEventListener("click", (e) => {
     .catch((e) => console.log(e));
 });
 
-//POST NEW GROUP OR PATCH
+// POST NEW GROUP OR PATCH
 document
   .querySelector("#submit-edit-conversation")
   .addEventListener("click", (e) => {
@@ -185,7 +185,7 @@ document
                 username,
               });
             } else {
-              //PATCH (change group members)
+              // PATCH (change group members)
               updateChatbox(document.getElementById(chatroomID), data);
               if (data.oldData.oldName)
                 document.querySelector(".chatTitle h3 form").innerText =
