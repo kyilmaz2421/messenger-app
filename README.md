@@ -1,4 +1,4 @@
-# Messeneger Application
+# Messenger Application
 
 A fully functional Messenger application (inspired by Slack and Facebook Messenger) using SocketIO, Redis, Node.js, and MongoDB.
 
