@@ -4,6 +4,12 @@ A fully functional Messenger application (inspired by Slack and Facebook Messeng
 
 Currently hosted on Heroku at https://messaging-chat-app.herokuapp.com/
 
+# Usage Demo
+
+Login page:
+
+![Screenshot](https://drive.google.com/file/d/1sGYo1Xhrj9RxKMgt7d1ejPzyqcbjI_ff/view?usp=sharing)
+
 # How to run environment locally
 
 1. Clone down this repository
